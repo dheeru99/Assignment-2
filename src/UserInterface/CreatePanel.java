@@ -382,7 +382,32 @@ public class CreatePanel extends javax.swing.JPanel {
             }else if(path.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Profile Picture is Mandatory..!!");
             }else{
-            
+                String regPhoneNumber="^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$" 
+                                + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$" 
+                                + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$";
+                String regEmail= "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
+                                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+                
+                
+                if (!name.matches("^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)")){
+                 JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Name");
+                }else if(age.matches("[a-zA-Z]+") || !age.matches("[0-9]+") || Integer.parseInt(age)<0 || Integer.parseInt(age)>100 ){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Age");
+                }else if(!phoneNumber.matches(regPhoneNumber)){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Phone Number");
+                }else if(!email.matches(regEmail)){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Email Address");
+                }else if(txt12.getIcon()==null){
+                    JOptionPane.showMessageDialog(this, "Please Upload a Valid Profile Picture");
+                }else{
+                    
+                    
+            phoneNumber=phoneNumber.replace("-","");
+            phoneNumber=phoneNumber.replace("(","");
+            phoneNumber=phoneNumber.replace(")","");
+            phoneNumber=phoneNumber.replace(" ","");
+            phoneNumber=phoneNumber.replace("+91","");
+            phoneNumber=phoneNumber.replace("+1","");
             Information info =prevInfo.addEmployee();
             info.setName(name);
             info.setEmpId(empId);
@@ -410,6 +435,7 @@ public class CreatePanel extends javax.swing.JPanel {
             txt11.setText("");
             txt12.setIcon(null);
         // TODO add your handling code here:
+                }
             }
     }//GEN-LAST:event_jButton3ActionPerformed
  byte[] image =null;
