@@ -472,12 +472,13 @@ public class DisplayPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-              int selected =table.getSelectedRow();
+          DefaultTableModel tbl= (DefaultTableModel)table.getModel();
+        int selected =table.getSelectedRow();
          if(selected<0){
              JOptionPane.showMessageDialog(this, "No Row has been selected");
              return;
          }
-          DefaultTableModel tbl= (DefaultTableModel)table.getModel();
+         
             String name = txt1.getText();
             String empId = txt2.getText();
             String age = txt3.getText();
@@ -489,7 +490,7 @@ public class DisplayPanel extends javax.swing.JPanel {
             String phoneNumber = txt9.getText();
             String email = txt10.getText();
             File path =new File(txt11.getText());
-            if(name.equals("")){
+              if(name.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Name is Mandatory..!!");
             }else if(empId.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Id is Mandatory..!!");
@@ -512,7 +513,33 @@ public class DisplayPanel extends javax.swing.JPanel {
             }else if(path.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Profile Picture is Mandatory..!!");
             }else{
-         Information selectedInfo= (Information)tbl.getValueAt(selected, 9);
+                String regPhoneNumber="^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$" 
+                                + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$" 
+                                + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$";
+                String regEmail= "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
+                                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+                
+                
+                if (!name.matches("^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)")){
+                 JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Name");
+                }else if(age.matches("[a-zA-Z]+") || !age.matches("[0-9]+") || Integer.parseInt(age)<0 || Integer.parseInt(age)>100 ){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Age");
+                }else if(!phoneNumber.matches(regPhoneNumber)){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Phone Number");
+                }else if(!email.matches(regEmail)){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Email Address");
+                }else if(txt12.getIcon()==null){
+                    JOptionPane.showMessageDialog(this, "Please Upload a Valid Profile Picture");
+                }else{
+                    
+                
+            phoneNumber=phoneNumber.replace("-","");
+            phoneNumber=phoneNumber.replace("(","");
+            phoneNumber=phoneNumber.replace(")","");
+            phoneNumber=phoneNumber.replace(" ","");
+            phoneNumber=phoneNumber.replace("+91","");
+            phoneNumber=phoneNumber.replace("+1","");    
+            Information selectedInfo= (Information)tbl.getValueAt(selected, 9);
          
             selectedInfo.setName(name);
             selectedInfo.setEmpId(empId);
@@ -545,7 +572,7 @@ public class DisplayPanel extends javax.swing.JPanel {
             txt12.setIcon(null);
             table();
             }
-                
+            }  
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void searchEmp(String str){
