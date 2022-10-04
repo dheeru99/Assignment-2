@@ -6,6 +6,7 @@ package Attributes;
 
 
 import java.io.File;
+import java.util.Date;
 
 
 
@@ -18,7 +19,7 @@ public class Information {
     private String empId;
     private Integer age;
     private String gender;
-    private String startDate;
+    private Date startDate;
     private String level;
     private String teamInfo;
     private String positionTitle;
@@ -60,13 +61,15 @@ public class Information {
         this.gender = gender;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
+
+    
 
     
 
