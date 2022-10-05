@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -34,7 +36,6 @@ public class CreatePanel extends javax.swing.JPanel {
         this.prevInfo = prevInfo;
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,7 +58,6 @@ public class CreatePanel extends javax.swing.JPanel {
         txt3 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txt4 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txt7 = new javax.swing.JTextField();
@@ -84,6 +84,7 @@ public class CreatePanel extends javax.swing.JPanel {
         txt12 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         txt5 = new com.toedter.calendar.JDateChooser();
+        txt4 = new javax.swing.JComboBox<>();
 
         jLocaleChooser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +144,12 @@ public class CreatePanel extends javax.swing.JPanel {
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setText(":");
 
+        txt6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt6ActionPerformed(evt);
+            }
+        });
+
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel18.setText("EMAIL");
 
@@ -198,6 +205,14 @@ public class CreatePanel extends javax.swing.JPanel {
         });
 
         txt5.setDateFormatString("yyyy-MM-dd");
+        txt5.setMinSelectableDate(new java.util.Date(-62135747907000L));
+
+        txt4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECT", "MALE", "FEMALE", "OTHER" }));
+        txt4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -286,8 +301,8 @@ public class CreatePanel extends javax.swing.JPanel {
                                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt4, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                    .addComponent(txt5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txt5, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(txt4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(35, 35, 35)
                         .addComponent(txt12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(104, Short.MAX_VALUE))
@@ -314,9 +329,10 @@ public class CreatePanel extends javax.swing.JPanel {
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,16 +377,18 @@ public class CreatePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            String name = txt1.getText();
+
+       
+ 
+        String name = txt1.getText();
             String empId = txt2.getText();
             String age = txt3.getText();
-            String gender = txt4.getText();
-//            String startDate= ((JTextField)txt5.getDateEditor().getUiComponent()).getText();
+            String gender = txt4.getSelectedItem().toString();
             String startDate =String.valueOf(txt5.getDate()) ;
             String level = txt6.getText();
             String teamInfo = txt7.getText();
@@ -378,6 +396,7 @@ public class CreatePanel extends javax.swing.JPanel {
             String phoneNumber = txt9.getText();
             String email = txt10.getText();
             File path =new File(txt11.getText());
+            
             if(name.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Name is Mandatory..!!");
             }else if(empId.equals("")){
@@ -400,37 +419,97 @@ public class CreatePanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Employee Email is Mandatory..!!");
             }else if(path.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Profile Picture is Mandatory..!!");
+            }else if(startDate.matches("^[a-zA-z]*$") || startDate.matches("[0-9]+")){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Date");
             }else{
                 String regPhoneNumber="^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$" 
                                 + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$" 
                                 + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$";
                 String regEmail= "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
                                  + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-                 String regDate= "^(0[1-9]|[12][0-9]|3[01])[- /.] (0[1-9]|1[012])[- /.]";
+                Date date = new Date(startDate);
+                SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+                String regDate=f.format(date);
+                LocalDate newDate = LocalDate.now();
+                String newDate1 = String.valueOf(newDate);
+              Integer year = Integer.parseInt(regDate.substring(0,4));
+              Integer month = Integer.parseInt(regDate.substring(5,7));
+              Integer day = Integer.parseInt(regDate.substring(8,10));
                 
-                if (!name.matches("^[a-zA-z ]*$")){
+              Integer newYear = Integer.parseInt(newDate1.substring(0,4));
+              Integer newMonth = Integer.parseInt(newDate1.substring(5,7));
+              Integer newDay = Integer.parseInt(newDate1.substring(8,10));
+              
+                int empId2=0;
+             for(Information info1: prevInfo.getPrevInfo()){
+                 String empId1= info1.getEmpId(); 
+                  if(empId.matches(empId1)){
+                       empId2++;
+                       
+                  }
+                } 
+             int phone=0;
+              for(Information info1: prevInfo.getPrevInfo()){
+                 Long phoneNumber1= info1.getPhoneNumber();
+                  if(Long.parseLong(phoneNumber) ==phoneNumber1){
+                      phone++;
+                  }
+                }
+              int email1=0;
+              for(Information info1: prevInfo.getPrevInfo()){
+                 String emailAddress1= info1.getEmailAddress();
+                  if(email.matches(emailAddress1)){
+                       email1++;
+                  }
+                }
+              int count=0;
+              String path2 = path.getAbsolutePath();
+              for(Information info1: prevInfo.getPrevInfo()){
+                 String path1= info1.getPhoto().getAbsolutePath();
+                  if(path2.equals(path1)){
+                       count++;
+                  }
+                }
+             
+               if (!name.matches("^[a-zA-z ]*$")){
                  JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Name");
+                }else if(empId.matches("[a-zA-Z]+") || !age.matches("[0-9]+") ){
+                    JOptionPane.showMessageDialog(this, "Employee Id should be Numeric");
+                }else if(empId2>0){
+                    JOptionPane.showMessageDialog(this, "Please Enter Unique Employee Id");
                 }else if(age.matches("[a-zA-Z]+") || !age.matches("[0-9]+") || Integer.parseInt(age)<0 || Integer.parseInt(age)>100 ){
                     JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Age");
-//                }else if(!startDate.matches(regDate)){
-//                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Date");
-//                }
-
+                }else if(gender.matches("SELECT")){
+                    JOptionPane.showMessageDialog(this, "Please Enter Gender");
+                }else if(year>newYear){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Date");
+                }else if(year<=newYear && month>newMonth){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Date");
+                }else if(year<=newYear && month<=newMonth && day>newDay){
+                          JOptionPane.showMessageDialog(this, "Please Enter a Valid Date");
                 }else if(!phoneNumber.matches(regPhoneNumber)){
                     JOptionPane.showMessageDialog(this, "Please Enter a Valid Phone Number");
+                }else if(phone>0){
+                     JOptionPane.showMessageDialog(this, "Phone Number Already exists. Please provide different Phone Number");
                 }else if(!email.matches(regEmail)){
                     JOptionPane.showMessageDialog(this, "Please Enter a Valid Email Address");
+                }else if(email1>0){
+                    JOptionPane.showMessageDialog(this, "Email Address Already exists. Please provide different Email Address");
                 }else if(txt12.getIcon()==null){
                     JOptionPane.showMessageDialog(this, "Please Upload a Valid Profile Picture");
-                }else{
+                }else if(count>0){
+                    JOptionPane.showMessageDialog(this, "Profile Picture Already exists. Please provide different Profile Picture");
+                }else{ 
                     
-            startDate=startDate.replace("00:00:00 EDT ", "");
             phoneNumber=phoneNumber.replace("-","");
             phoneNumber=phoneNumber.replace("(","");
             phoneNumber=phoneNumber.replace(")","");
             phoneNumber=phoneNumber.replace(" ","");
             phoneNumber=phoneNumber.replace("+91","");
             phoneNumber=phoneNumber.replace("+1","");
+          
+            
+               
             Information info =prevInfo.addEmployee();
             info.setName(name);
             info.setEmpId(empId);
@@ -448,7 +527,7 @@ public class CreatePanel extends javax.swing.JPanel {
             txt1.setText("");
             txt2.setText("");
             txt3.setText("");
-            txt4.setText("");
+            txt4.setSelectedIndex(0);
             txt5.setDate(null);
             txt6.setText("");
             txt7.setText("");
@@ -500,7 +579,7 @@ String imageName=null;
                     txt1.setText("");
             txt2.setText("");
             txt3.setText("");
-            txt4.setText("");
+            txt4.setSelectedIndex(0);
             txt5.setDate(null);
             txt6.setText("");
             txt7.setText("");
@@ -515,6 +594,16 @@ String imageName=null;
     private void jLocaleChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLocaleChooser1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jLocaleChooser1ActionPerformed
+
+    private void txt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt6ActionPerformed
+
+    private void txt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt4ActionPerformed
+                String SelectedValue = txt4.getSelectedItem().toString();
+                
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -552,7 +641,7 @@ String imageName=null;
     private javax.swing.JLabel txt12;
     private javax.swing.JTextField txt2;
     private javax.swing.JTextField txt3;
-    private javax.swing.JTextField txt4;
+    private javax.swing.JComboBox<String> txt4;
     private com.toedter.calendar.JDateChooser txt5;
     private javax.swing.JTextField txt6;
     private javax.swing.JTextField txt7;
