@@ -499,7 +499,7 @@ public class DisplayPanel extends javax.swing.JPanel {
          }
          Information selectedInfo= (Information)tbl.getValueAt(selected, 9);
             String name = txt1.getText();
-            String empId = txt2.getText();
+            String empId = (txt2.getText()).replace("C00","");
             String age = txt3.getText();
             String gender = txt4.getSelectedItem().toString();
             String startDate = String.valueOf(txt5.getDate());
