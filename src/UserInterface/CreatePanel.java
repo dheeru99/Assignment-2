@@ -473,7 +473,7 @@ public class CreatePanel extends javax.swing.JPanel {
                        count++;
                   }
                 }
-             
+             char p = phoneNumber.charAt(0);
                if (!name.matches("^[a-zA-z ]*$")){
                  JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Name");
                 }else if(age.matches("[a-zA-Z]+") || !age.matches("[0-9]+") || Integer.parseInt(age)<0 || Integer.parseInt(age)>100 ){
@@ -487,6 +487,8 @@ public class CreatePanel extends javax.swing.JPanel {
                 }else if(year<=newYear && month<=newMonth && day>newDay){
                           JOptionPane.showMessageDialog(this, "Please Enter a Valid Date");
                 }else if(!phoneNumber.matches(regPhoneNumber)){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Phone Number");
+                }else if(p == ' '){
                     JOptionPane.showMessageDialog(this, "Please Enter a Valid Phone Number");
                 }else if(phone>0){
                      JOptionPane.showMessageDialog(this, "Phone Number Already exists. Please provide different Phone Number");
