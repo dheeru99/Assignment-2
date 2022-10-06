@@ -42,7 +42,7 @@ public class DisplayPanel extends javax.swing.JPanel {
         for(Information info: prevInfo.getPrevInfo()){
             Object[] row = new Object[20];
             row[0]= info.getName();
-            row[1]=info.getEmpId();
+            row[1]="C00"+info.getEmpId();
             row[2]=info.getAge();
             row[3]=info.getGender();
             SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -663,7 +663,7 @@ public class DisplayPanel extends javax.swing.JPanel {
          Information selectedInfo= (Information)tbl.getValueAt(selected, 9);
          
          txt1.setText(selectedInfo.getName());
-         txt2.setText(selectedInfo.getEmpId());
+         txt2.setText("C00"+selectedInfo.getEmpId());
          txt3.setText(String.valueOf(selectedInfo.getAge()));
           txt4.setSelectedItem(selectedInfo.getGender());
          txt5.setDate(selectedInfo.getStartDate());
