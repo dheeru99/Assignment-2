@@ -23,7 +23,7 @@ public class Information {
     private String level;
     private String teamInfo;
     private String positionTitle;
-    private Long phoneNumber;
+    private String phoneNumber;
     private String emailAddress;
     private File photo;
 
@@ -97,13 +97,15 @@ public class Information {
         this.positionTitle = positionTitle;
     }
 
-    public Long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    
 
     
 
