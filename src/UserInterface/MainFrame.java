@@ -16,6 +16,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     InformationArray prevInfo;
+    
     public MainFrame() {
        prevInfo= new InformationArray();
         initComponents();

@@ -32,6 +32,7 @@ public class CreatePanel extends javax.swing.JPanel {
      * Creates new form CreatePanel
      */
     InformationArray prevInfo;
+    
     public CreatePanel(InformationArray prevInfo) {
         this.prevInfo = prevInfo;
         initComponents();
@@ -52,7 +53,6 @@ public class CreatePanel extends javax.swing.JPanel {
         txt1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txt2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txt3 = new javax.swing.JTextField();
@@ -85,6 +85,7 @@ public class CreatePanel extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         txt5 = new com.toedter.calendar.JDateChooser();
         txt4 = new javax.swing.JComboBox<>();
+        txt2 = new javax.swing.JLabel();
 
         jLocaleChooser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +102,17 @@ public class CreatePanel extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText(":");
+
+        txt1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt1MouseClicked(evt);
+            }
+        });
+        txt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt1ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("EMPLOYEE ID");
@@ -277,7 +289,7 @@ public class CreatePanel extends javax.swing.JPanel {
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,9 +331,10 @@ public class CreatePanel extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txt2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -377,7 +390,7 @@ public class CreatePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addContainerGap(285, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -385,8 +398,8 @@ public class CreatePanel extends javax.swing.JPanel {
 
        
  
-        String name = txt1.getText();
-            String empId = txt2.getText();
+            String name = txt1.getText();
+            String empId = (txt2.getText()).replace("C00","");
             String age = txt3.getText();
             String gender = txt4.getSelectedItem().toString();
             String startDate =String.valueOf(txt5.getDate()) ;
@@ -399,8 +412,6 @@ public class CreatePanel extends javax.swing.JPanel {
             
             if(name.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Name is Mandatory..!!");
-            }else if(empId.equals("")){
-                JOptionPane.showMessageDialog(this, "Employee Id is Mandatory..!!");
             }else if(age.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Age is Mandatory..!!");
             }else if(gender.equals("")){
@@ -440,14 +451,6 @@ public class CreatePanel extends javax.swing.JPanel {
               Integer newMonth = Integer.parseInt(newDate1.substring(5,7));
               Integer newDay = Integer.parseInt(newDate1.substring(8,10));
               
-                int empId2=0;
-             for(Information info1: prevInfo.getPrevInfo()){
-                 String empId1= info1.getEmpId(); 
-                  if(empId.matches(empId1)){
-                       empId2++;
-                       
-                  }
-                } 
              int phone=0;
               for(Information info1: prevInfo.getPrevInfo()){
                  Long phoneNumber1= info1.getPhoneNumber();
@@ -473,10 +476,6 @@ public class CreatePanel extends javax.swing.JPanel {
              
                if (!name.matches("^[a-zA-z ]*$")){
                  JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Name");
-                }else if(empId.matches("[a-zA-Z]+") || !age.matches("[0-9]+") ){
-                    JOptionPane.showMessageDialog(this, "Employee Id should be Numeric");
-                }else if(empId2>0){
-                    JOptionPane.showMessageDialog(this, "Please Enter Unique Employee Id");
                 }else if(age.matches("[a-zA-Z]+") || !age.matches("[0-9]+") || Integer.parseInt(age)<0 || Integer.parseInt(age)>100 ){
                     JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Age");
                 }else if(gender.matches("SELECT")){
@@ -522,7 +521,7 @@ public class CreatePanel extends javax.swing.JPanel {
             info.setPhoneNumber(Long.parseLong(phoneNumber));
             info.setEmailAddress(email);
             info.setPhoto(path);
-            JOptionPane.showMessageDialog(this, "Employee Profile has been saved successfully..!!");
+            JOptionPane.showMessageDialog(this, ""+name+"'s Employee Profile has been Created successfully..!!");
             
             txt1.setText("");
             txt2.setText("");
@@ -542,6 +541,7 @@ public class CreatePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
  byte[] image =null;
 String imageName=null;
+int x=1;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
             JFileChooser file = new JFileChooser();
             FileFilter alter = new FileNameExtensionFilter("JPG",ImageIO.getReaderFileSuffixes());
@@ -576,7 +576,7 @@ String imageName=null;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-                    txt1.setText("");
+            txt1.setText("");
             txt2.setText("");
             txt3.setText("");
             txt4.setSelectedIndex(0);
@@ -604,6 +604,32 @@ String imageName=null;
                 
         // TODO add your handling code here:
     }//GEN-LAST:event_txt4ActionPerformed
+
+    private void txt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt1ActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt1ActionPerformed
+
+    private void txt1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt1MouseClicked
+        int z=0;
+        String empId1 =null;
+       Information y = new Information();
+       if(y.getEmpId() == null){
+           txt2.setText("C00"+"1");
+       }
+           for(Information info1: prevInfo.getPrevInfo()){
+                  if(info1.getEmpId().isEmpty()){
+                       txt2.setText("C00"+"1"); 
+                  }
+                  empId1=info1.getEmpId();
+                   z= Integer.parseInt(empId1);
+                }
+         
+              txt2.setText("C00"+String.valueOf(++z));
+               
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -639,7 +665,7 @@ String imageName=null;
     private javax.swing.JTextField txt10;
     private javax.swing.JTextField txt11;
     private javax.swing.JLabel txt12;
-    private javax.swing.JTextField txt2;
+    private javax.swing.JLabel txt2;
     private javax.swing.JTextField txt3;
     private javax.swing.JComboBox<String> txt4;
     private com.toedter.calendar.JDateChooser txt5;
@@ -648,4 +674,5 @@ String imageName=null;
     private javax.swing.JTextField txt8;
     private javax.swing.JTextField txt9;
     // End of variables declaration//GEN-END:variables
+
 }

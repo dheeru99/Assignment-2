@@ -510,10 +510,8 @@ public class DisplayPanel extends javax.swing.JPanel {
             String email = txt10.getText();
             File path =new File(txt11.getText());
             
- if(name.equals("")){
+            if(name.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Name is Mandatory..!!");
-            }else if(empId.equals("")){
-                JOptionPane.showMessageDialog(this, "Employee Id is Mandatory..!!");
             }else if(age.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Age is Mandatory..!!");
             }else if(gender.equals("")){
@@ -579,8 +577,6 @@ public class DisplayPanel extends javax.swing.JPanel {
              
                if (!name.matches("^[a-zA-z ]*$")){
                  JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Name");
-                }else if(empId.matches("[a-zA-Z]+") || !age.matches("[0-9]+") ){
-                    JOptionPane.showMessageDialog(this, "Employee Id should be Numeric");
                 }else if(age.matches("[a-zA-Z]+") || !age.matches("[0-9]+") || Integer.parseInt(age)<0 || Integer.parseInt(age)>100 ){
                     JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Age");
                 }else if(gender.matches("SELECT")){
@@ -632,7 +628,7 @@ public class DisplayPanel extends javax.swing.JPanel {
             Image img2 = img1.getScaledInstance(300,200,Image.SCALE_SMOOTH);
             ImageIcon icon= new ImageIcon(img2); 
          txt12.setIcon(icon);
-            JOptionPane.showMessageDialog(this, "Employee Details Updated Successfully..!!");
+            JOptionPane.showMessageDialog(this, ""+name+"'s Employee Details Updated Successfully..!!");
             txt1.setText("");
             txt2.setText("");
             txt3.setText("");
