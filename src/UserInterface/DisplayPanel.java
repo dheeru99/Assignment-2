@@ -8,6 +8,9 @@ import Attributes.Information;
 import Attributes.InformationArray;
 import java.awt.Image;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -42,7 +45,8 @@ public class DisplayPanel extends javax.swing.JPanel {
             row[1]=info.getEmpId();
             row[2]=info.getAge();
             row[3]=info.getGender();
-            row[4]=info.getStartDate();
+            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+            row[4]= date.format(info.getStartDate());
             row[5]=info.getLevel();        
             row[6]=info.getTeamInfo();        
             row[7]=info.getPositionTitle();        
@@ -64,6 +68,7 @@ public class DisplayPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -73,7 +78,6 @@ public class DisplayPanel extends javax.swing.JPanel {
         jLabel23 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txt9 = new javax.swing.JTextField();
-        txt4 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txt7 = new javax.swing.JTextField();
@@ -82,7 +86,6 @@ public class DisplayPanel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         txt8 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        txt5 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -94,7 +97,6 @@ public class DisplayPanel extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txt10 = new javax.swing.JTextField();
-        txt2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txt3 = new javax.swing.JTextField();
@@ -108,6 +110,9 @@ public class DisplayPanel extends javax.swing.JPanel {
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         txt11 = new javax.swing.JTextField();
+        txt5 = new com.toedter.calendar.JDateChooser();
+        txt4 = new javax.swing.JComboBox<>();
+        txt2 = new javax.swing.JLabel();
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -259,24 +264,45 @@ public class DisplayPanel extends javax.swing.JPanel {
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel25.setText(":");
 
+        txt5.setDateFormatString("yyyy-MM-dd");
+
+        txt4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECT", "MALE", "FEMALE", "OTHER" }));
+        txt4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addGap(84, 84, 84))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(serachField, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 100, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt11, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +318,7 @@ public class DisplayPanel extends javax.swing.JPanel {
                                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
                                             .addComponent(txt10, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -316,13 +342,13 @@ public class DisplayPanel extends javax.swing.JPanel {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(txt5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txt5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txt4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -330,35 +356,27 @@ public class DisplayPanel extends javax.swing.JPanel {
                                             .addGap(18, 18, 18)
                                             .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGap(18, 18, 18)
-                                            .addComponent(txt2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18)
-                                .addComponent(txt12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txt11, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txt1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                                .addComponent(txt2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1))))
+                                .addComponent(txt12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(160, 160, 160)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(283, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,12 +411,13 @@ public class DisplayPanel extends javax.swing.JPanel {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txt5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -435,7 +454,7 @@ public class DisplayPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -456,8 +475,8 @@ public class DisplayPanel extends javax.swing.JPanel {
          txt1.setText("");
          txt2.setText("");
          txt3.setText("");
-         txt4.setText("");
-         txt5.setText("");
+         txt4.setSelectedIndex(0);
+         txt5.setDate(null);
          txt6.setText("");
          txt7.setText("");
          txt8.setText("");
@@ -478,22 +497,21 @@ public class DisplayPanel extends javax.swing.JPanel {
              JOptionPane.showMessageDialog(this, "No Row has been selected");
              return;
          }
-         
+         Information selectedInfo= (Information)tbl.getValueAt(selected, 9);
             String name = txt1.getText();
             String empId = txt2.getText();
             String age = txt3.getText();
-            String gender = txt4.getText();
-            String startDate = txt5.getText();
+            String gender = txt4.getSelectedItem().toString();
+            String startDate = String.valueOf(txt5.getDate());
             String level = txt6.getText();
             String teamInfo = txt7.getText();
             String positionTitle = txt8.getText();
             String phoneNumber = txt9.getText();
             String email = txt10.getText();
             File path =new File(txt11.getText());
-              if(name.equals("")){
+            
+            if(name.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Name is Mandatory..!!");
-            }else if(empId.equals("")){
-                JOptionPane.showMessageDialog(this, "Employee Id is Mandatory..!!");
             }else if(age.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Age is Mandatory..!!");
             }else if(gender.equals("")){
@@ -512,40 +530,93 @@ public class DisplayPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Employee Email is Mandatory..!!");
             }else if(path.equals("")){
                 JOptionPane.showMessageDialog(this, "Employee Profile Picture is Mandatory..!!");
+            }else if(startDate.matches("^[a-zA-z]*$") || startDate.matches("[0-9]+")){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Date");
             }else{
                 String regPhoneNumber="^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$" 
                                 + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$" 
                                 + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$";
                 String regEmail= "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
                                  + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+                Date date = new Date(startDate);
+                SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+                String regDate=f.format(date);
+                LocalDate newDate = LocalDate.now();
+                String newDate1 = String.valueOf(newDate);
+              Integer year = Integer.parseInt(regDate.substring(0,4));
+              Integer month = Integer.parseInt(regDate.substring(5,7));
+              Integer day = Integer.parseInt(regDate.substring(8,10));
                 
-                
-                if (!name.matches("^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)")){
+              Integer newYear = Integer.parseInt(newDate1.substring(0,4));
+              Integer newMonth = Integer.parseInt(newDate1.substring(5,7));
+              Integer newDay = Integer.parseInt(newDate1.substring(8,10));
+              
+              
+             int phone=0;
+              for(Information info1: prevInfo.getPrevInfo()){
+                 Long phoneNumber1= info1.getPhoneNumber();
+                  if(Long.parseLong(phoneNumber) ==phoneNumber1 && !(Long.parseLong(phoneNumber)== selectedInfo.getPhoneNumber())){
+                      phone++;
+                  }
+                }
+              int email1=0;
+              for(Information info1: prevInfo.getPrevInfo()){
+                 String emailAddress1= info1.getEmailAddress();
+                  if(email.matches(emailAddress1) && !email.matches(selectedInfo.getEmailAddress())){
+                       email1++;
+                  }
+                }
+              int count=0;
+              String path2 = path.getAbsolutePath();
+              for(Information info1: prevInfo.getPrevInfo()){
+                 String path1= info1.getPhoto().getAbsolutePath();
+                  if(path2.equals(path1) && !(path2.equals(selectedInfo.getPhoto().getAbsolutePath()))){
+                       count++;
+                  }
+                }
+             
+               if (!name.matches("^[a-zA-z ]*$")){
                  JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Name");
                 }else if(age.matches("[a-zA-Z]+") || !age.matches("[0-9]+") || Integer.parseInt(age)<0 || Integer.parseInt(age)>100 ){
                     JOptionPane.showMessageDialog(this, "Please Enter a Valid Employee Age");
+                }else if(gender.matches("SELECT")){
+                    JOptionPane.showMessageDialog(this, "Please Enter Gender");
+                }else if(year>newYear){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Date");
+                }else if(year<=newYear && month>newMonth){
+                    JOptionPane.showMessageDialog(this, "Please Enter a Valid Date");
+                }else if(year<=newYear && month<=newMonth && day>newDay){
+                          JOptionPane.showMessageDialog(this, "Please Enter a Valid Date");
                 }else if(!phoneNumber.matches(regPhoneNumber)){
                     JOptionPane.showMessageDialog(this, "Please Enter a Valid Phone Number");
+                }else if(phone>0){
+                     JOptionPane.showMessageDialog(this, "Phone Number Already exists. Please provide different Phone Number");
                 }else if(!email.matches(regEmail)){
                     JOptionPane.showMessageDialog(this, "Please Enter a Valid Email Address");
+                }else if(email1>0){
+                    JOptionPane.showMessageDialog(this, "Email Address Already exists. Please provide different Email Address");
                 }else if(txt12.getIcon()==null){
                     JOptionPane.showMessageDialog(this, "Please Upload a Valid Profile Picture");
-                }else{
+                }else if(count>0){
+                    JOptionPane.showMessageDialog(this, "Profile Picture Already exists. Please provide different Profile Picture");
+                }else{ 
                     
-                
             phoneNumber=phoneNumber.replace("-","");
             phoneNumber=phoneNumber.replace("(","");
             phoneNumber=phoneNumber.replace(")","");
             phoneNumber=phoneNumber.replace(" ","");
             phoneNumber=phoneNumber.replace("+91","");
-            phoneNumber=phoneNumber.replace("+1","");    
-            Information selectedInfo= (Information)tbl.getValueAt(selected, 9);
+            phoneNumber=phoneNumber.replace("+1","");
+          
+            
+            
+
          
             selectedInfo.setName(name);
             selectedInfo.setEmpId(empId);
             selectedInfo.setAge(Integer.parseInt(age));
             selectedInfo.setGender(gender);
-            selectedInfo.setStartDate(startDate);
+            selectedInfo.setStartDate(new Date(startDate));
             selectedInfo.setLevel(level);
             selectedInfo.setTeamInfo(teamInfo);
             selectedInfo.setPositionTitle(positionTitle);
@@ -557,12 +628,12 @@ public class DisplayPanel extends javax.swing.JPanel {
             Image img2 = img1.getScaledInstance(300,200,Image.SCALE_SMOOTH);
             ImageIcon icon= new ImageIcon(img2); 
          txt12.setIcon(icon);
-            JOptionPane.showMessageDialog(this, "Employee Details Updated Successfully..!!");
+            JOptionPane.showMessageDialog(this, ""+name+"'s Employee Details Updated Successfully..!!");
             txt1.setText("");
             txt2.setText("");
             txt3.setText("");
-            txt4.setText("");
-            txt5.setText("");
+            txt4.setSelectedIndex(0);
+            txt5.setDate(null);
             txt6.setText("");
             txt7.setText("");
             txt8.setText("");
@@ -594,8 +665,8 @@ public class DisplayPanel extends javax.swing.JPanel {
          txt1.setText(selectedInfo.getName());
          txt2.setText(selectedInfo.getEmpId());
          txt3.setText(String.valueOf(selectedInfo.getAge()));
-          txt4.setText(selectedInfo.getGender());
-         txt5.setText(selectedInfo.getStartDate());
+          txt4.setSelectedItem(selectedInfo.getGender());
+         txt5.setDate(selectedInfo.getStartDate());
          txt6.setText(selectedInfo.getLevel());
          txt7.setText(selectedInfo.getTeamInfo());
          txt8.setText(selectedInfo.getPositionTitle());
@@ -657,12 +728,19 @@ String imageName=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void txt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt4ActionPerformed
+        String SelectedValue = txt4.getSelectedItem().toString();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -695,10 +773,10 @@ String imageName=null;
     private javax.swing.JTextField txt10;
     private javax.swing.JTextField txt11;
     private javax.swing.JLabel txt12;
-    private javax.swing.JTextField txt2;
+    private javax.swing.JLabel txt2;
     private javax.swing.JTextField txt3;
-    private javax.swing.JTextField txt4;
-    private javax.swing.JTextField txt5;
+    private javax.swing.JComboBox<String> txt4;
+    private com.toedter.calendar.JDateChooser txt5;
     private javax.swing.JTextField txt6;
     private javax.swing.JTextField txt7;
     private javax.swing.JTextField txt8;
