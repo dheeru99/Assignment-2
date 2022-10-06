@@ -554,8 +554,8 @@ public class DisplayPanel extends javax.swing.JPanel {
               
              int phone=0;
               for(Information info1: prevInfo.getPrevInfo()){
-                 Long phoneNumber1= info1.getPhoneNumber();
-                  if(Long.parseLong(phoneNumber) ==phoneNumber1 && !(Long.parseLong(phoneNumber)== selectedInfo.getPhoneNumber())){
+                 String phoneNumber1= info1.getPhoneNumber();
+                  if(phoneNumber ==phoneNumber1 && !(phoneNumber== selectedInfo.getPhoneNumber())){
                       phone++;
                   }
                 }
@@ -601,13 +601,13 @@ public class DisplayPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Profile Picture Already exists. Please provide different Profile Picture");
                 }else{ 
                     
-            phoneNumber=phoneNumber.replace("-","");
-            phoneNumber=phoneNumber.replace("(","");
-            phoneNumber=phoneNumber.replace(")","");
-            phoneNumber=phoneNumber.replace(" ","");
-            phoneNumber=phoneNumber.replace("+91","");
-            phoneNumber=phoneNumber.replace("+1","");
-          
+//            phoneNumber=phoneNumber.replace("-","");
+//            phoneNumber=phoneNumber.replace("(","");
+//            phoneNumber=phoneNumber.replace(")","");
+//            phoneNumber=phoneNumber.replace(" ","");
+//            phoneNumber=phoneNumber.replace("+91","");
+//            phoneNumber=phoneNumber.replace("+1","");
+//          
             
             
 
@@ -620,7 +620,7 @@ public class DisplayPanel extends javax.swing.JPanel {
             selectedInfo.setLevel(level);
             selectedInfo.setTeamInfo(teamInfo);
             selectedInfo.setPositionTitle(positionTitle);
-            selectedInfo.setPhoneNumber(Long.parseLong(phoneNumber));
+            selectedInfo.setPhoneNumber(phoneNumber);
             selectedInfo.setEmailAddress(email);
             selectedInfo.setPhoto(path);
              ImageIcon img = new ImageIcon(selectedInfo.getPhoto().toString());
