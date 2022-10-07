@@ -718,6 +718,9 @@ String imageName=null;
         file.setFileFilter(alter5);
         file.showOpenDialog(null);
         File file1=file.getSelectedFile();
+        if(file1 == null){
+                JOptionPane.showMessageDialog(this, "Please Upload a Profile Picture");
+            }else{
         imageName = file1.getAbsolutePath();
         txt11.setText(imageName);
         ImageIcon img = new ImageIcon(file1.toString());
@@ -725,6 +728,7 @@ String imageName=null;
         Image img2 = img1.getScaledInstance(300,200,Image.SCALE_SMOOTH);
         ImageIcon icon= new ImageIcon(img2);
         txt12.setIcon(icon);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 

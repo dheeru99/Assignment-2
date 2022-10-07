@@ -546,6 +546,7 @@ String imageName=null;
 int x=1;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
             JFileChooser file = new JFileChooser();
+            
             FileFilter alter = new FileNameExtensionFilter("JPG",ImageIO.getReaderFileSuffixes());
             FileFilter alter1 = new FileNameExtensionFilter("JPEG",ImageIO.getReaderFileSuffixes());
             FileFilter alter2 = new FileNameExtensionFilter("PNG",ImageIO.getReaderFileSuffixes());
@@ -560,6 +561,9 @@ int x=1;
             file.setFileFilter(alter5);
             file.showOpenDialog(null);
             File file1=file.getSelectedFile();
+            if(file1 == null){
+                JOptionPane.showMessageDialog(this, "Please Upload a Profile Picture");
+            }else{
             imageName = file1.getAbsolutePath();
             txt11.setText(imageName);
             ImageIcon img = new ImageIcon(file1.toString());
@@ -567,6 +571,7 @@ int x=1;
             Image img2 = img1.getScaledInstance(300,200,Image.SCALE_SMOOTH);
             ImageIcon icon= new ImageIcon(img2); 
             txt12.setIcon(icon);
+            }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
