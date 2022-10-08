@@ -4,7 +4,7 @@
  */
 package UserInterface;
 
-import Attributes.InformationArray;
+import Attribute.InformationArray;
 
 /**
  *

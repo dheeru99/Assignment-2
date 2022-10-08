@@ -4,8 +4,8 @@
  */
 package UserInterface;
 
-import Attributes.Information;
-import Attributes.InformationArray;
+import Attribute.Information;
+import Attribute.InformationArray;
 import java.awt.Image;
 import java.io.File;
 import java.text.SimpleDateFormat;
